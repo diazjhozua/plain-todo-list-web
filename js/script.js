@@ -12,6 +12,7 @@ const pendingProgressBar = document.getElementById("pendingProgressBar");
 var editableID = 0;
 var isEditing = false;
 
+// init loading of tasks
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 if (tasks.length != 0) {
@@ -19,6 +20,7 @@ if (tasks.length != 0) {
   countTasks();
 }
 
+// sort tasks date to descending
 if (localStorage.getItem("tasks")) {
   // sort by date
 
@@ -47,6 +49,7 @@ formNote.addEventListener("submit", function (e) {
     formNote.classList.add("was-validated");
     inputNote.focus();
   } else {
+    //validation passed
     formNote.classList.remove("was-validated");
     if (!isEditing) {
       const task = {
