@@ -87,9 +87,29 @@
         </div>
 
         <div class="col-12 col-md-8 px-5">
+          <div class="progress mt-4">
+            <div
+              class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+              data-bs-toggle="tooltip"
+              data-bs-placement="top"
+              title="Completed Task"
+              title="Completed Task"
+              role="progressbar"
+              id="completedProgressBar"
+            ></div>
+            <div
+              class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
+              data-bs-toggle="tooltip"
+              data-bs-placement="top"
+              title="Completed Task"
+              role="Pending"
+              id="pendingProgressBar"
+            ></div>
+          </div>
+
           <p class="fs-4 fw-bold mt-4">Your List</p>
 
-          <p class="fs-2 text-center fw-light mt-5" id="noTaskMessage">
+          <p class="fs-3 text-center fw-lighter mt-5" id="noTaskMessage">
             No task left. Please input new task to improve your productiveness.
           </p>
           <ul class="list-group" id="list"></ul>

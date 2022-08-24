@@ -5,6 +5,10 @@ const todoList = document.getElementById("list");
 const formNote = document.getElementById("formNote");
 const noTaskMessage = document.getElementById("noTaskMessage");
 
+// progress bar
+const completedProgressBar = document.getElementById("completedProgressBar");
+const pendingProgressBar = document.getElementById("pendingProgressBar");
+
 var editableID = 0;
 var isEditing = false;
 
@@ -12,6 +16,7 @@ let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 if (tasks.length != 0) {
   noTaskMessage.classList.add("d-none");
+  countTasks();
 }
 
 if (localStorage.getItem("tasks")) {
@@ -166,7 +171,7 @@ function createTask(task) {
    `;
   taskEl.innerHTML = taskElMarkup;
   todoList.prepend(taskEl);
-  //   countTasks();
+  countTasks();
 }
 
 // update task status
@@ -184,7 +189,7 @@ function updateTaskStatus(taskId, el) {
   localStorage.setItem("tasks", JSON.stringify(tasks));
   editableID = task.id;
   updateTaskDOM(task);
-  //   countTasks();
+  countTasks();
 }
 
 // update task
@@ -212,7 +217,7 @@ function removeTask(taskId) {
       noTaskMessage.classList.remove("d-none");
     }
 
-    //  countTasks();
+    countTasks();
   }
 
   vanillaToast.info("The task has been deleted successfully!", {
@@ -254,4 +259,13 @@ function updateTaskDOM(task) {
          </button>
       </div>
    </div>`;
+}
+
+function countTasks() {
+  let completed = tasks.filter((task) => task.isCompleted == true);
+  let pending = tasks.length - completed.length;
+  pendingProgressBar.style.width = `${(pending / tasks.length) * 100}%`;
+  completedProgressBar.style.width = `${
+    (completed.length / tasks.length) * 100
+  }%`;
 }
