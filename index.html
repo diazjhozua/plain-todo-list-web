@@ -52,28 +52,38 @@
 
     <div class="container mt-5 pt-5">
       <div class="row gx-5">
-        <div class="col-4 border p-5">
-          <p class="fs-4 text">What's on your planned?</p>
+        <div class="col-4">
+          <div class="border p-5">
+            <p class="fs-4 text">What's on your planned?</p>
 
-          <form id="formNote" class="needs-validation" novalidate>
-            <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="inputNote" required />
-              <label class="form-label" for="floatingInput">Task</label>
-              <div class="valid-feedback">Looks good!</div>
+            <form id="formNote" class="needs-validation" novalidate>
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputNote"
+                  required
+                />
+                <label class="form-label" for="floatingInput">Task</label>
+                <div class="valid-feedback">Looks good!</div>
 
-              <div class="invalid-feedback">Please provide a task title.</div>
-            </div>
+                <div class="invalid-feedback">Please provide a task title.</div>
+              </div>
 
-            <div class="form-floating">
-              <textarea
-                class="input-desc form-control"
-                id="inputDesc"
-              ></textarea>
-              <label for="floatingTextarea2">Description</label>
-            </div>
-            <button type="submit" class="btn btn-secondary mt-5">Submit</button>
-          </form>
+              <div class="form-floating">
+                <textarea
+                  class="input-desc form-control"
+                  id="inputDesc"
+                ></textarea>
+                <label for="floatingTextarea2">Description</label>
+              </div>
+              <button type="submit" class="btn btn-secondary mt-5">
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
+
         <div class="col-6">
           <p class="fs-4 fw-bold">Your List</p>
           <ul class="list-group" id="list">

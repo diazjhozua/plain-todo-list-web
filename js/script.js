@@ -39,7 +39,7 @@ formNote.addEventListener("submit", function (e) {
   }
 });
 
-// remove task
+// remove task - EL
 todoList.addEventListener("click", (e) => {
   if (
     e.target.classList.contains("remove-task") ||
@@ -48,6 +48,23 @@ todoList.addEventListener("click", (e) => {
     const taskId = e.target.closest("li").id;
     removeTask(taskId);
   }
+});
+
+// update overall task - EL
+todoList.addEventListener("click", (e) => {
+  if (
+    e.target.classList.contains("edit-task") ||
+    e.target.parentElement.classList.contains("edit-task")
+  ) {
+    const taskId = e.target.closest("li").id;
+    updateTask(taskId);
+  }
+});
+
+// update task status - EL
+todoList.addEventListener("input", (e) => {
+  const taskId = e.target.closest("li").id;
+  updateTaskStatus(taskId, e.target);
 });
 
 // adding of task to DOM
@@ -77,7 +94,7 @@ function createTask(task) {
          <span></span>
       </div>
       <div class="col-3">
-         <button class="btn btn-primary btn-sm m-1">
+         <button class="btn btn-primary btn-sm m-1 edit-task">
             <i class="fa-solid fa-pen-to-square"></i>
          </button>
          <button class="btn btn-danger btn-sm m-1 remove-task">
@@ -88,6 +105,16 @@ function createTask(task) {
    `;
   taskEl.innerHTML = taskElMarkup;
   todoList.prepend(taskEl);
+  //   countTasks();
+}
+
+// update task status
+function updateTaskStatus(taskId, el) {
+  console.log("taskId", taskId);
+  const task = tasks.find((task) => task.id === parseInt(taskId));
+  task.isCompleted = !task.isCompleted;
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
   //   countTasks();
 }
 
