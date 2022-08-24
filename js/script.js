@@ -39,6 +39,17 @@ formNote.addEventListener("submit", function (e) {
   }
 });
 
+// remove task
+todoList.addEventListener("click", (e) => {
+  if (
+    e.target.classList.contains("remove-task") ||
+    e.target.parentElement.classList.contains("remove-task")
+  ) {
+    const taskId = e.target.closest("li").id;
+    removeTask(taskId);
+  }
+});
+
 // adding of task to DOM
 function createTask(task) {
   const taskEl = document.createElement("li");
@@ -53,6 +64,7 @@ function createTask(task) {
          <input
             class="form-check-input"
             type="checkbox"
+            ${task.isCompleted ? "checked" : ""}
             value=""
             id="flexCheckDefault"
          />
@@ -68,7 +80,7 @@ function createTask(task) {
          <button class="btn btn-primary btn-sm m-1">
             <i class="fa-solid fa-pen-to-square"></i>
          </button>
-         <button class="btn btn-danger btn-sm m-1">
+         <button class="btn btn-danger btn-sm m-1 remove-task">
             <i class="fa-solid fa-trash-can"></i>
          </button>
       </div>
@@ -77,4 +89,18 @@ function createTask(task) {
   taskEl.innerHTML = taskElMarkup;
   todoList.prepend(taskEl);
   //   countTasks();
+}
+
+// remove task
+function removeTask(taskId) {
+  tasks = tasks.filter((task) => task.id !== parseInt(taskId));
+  var deleteConfirmation = confirm(
+    "Are you sure you want to delete this task permanently?"
+  );
+  if (deleteConfirmation == true) {
+    console.log("tasks.length", tasks.length);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    document.getElementById(taskId).remove();
+    //  countTasks();
+  }
 }
