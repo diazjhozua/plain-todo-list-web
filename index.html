@@ -15,6 +15,11 @@
 
     <link rel="stylesheet" href="css/style.css" />
 
+    <script
+      src="https://kit.fontawesome.com/5a1a6f8209.js"
+      crossorigin="anonymous"
+    ></script>
+
     <title>Todo List</title>
   </head>
   <body>
@@ -46,34 +51,63 @@
     </header>
 
     <div class="container mt-5 pt-5">
-      <div class="row">
+      <div class="row gx-5">
         <div class="col-4 border p-5">
-         <p class="fs-4 text">What's on your planned?</p>
+          <p class="fs-4 text">What's on your planned?</p>
 
-         <form class="needs-validation" novalidate>
+          <form class="needs-validation" novalidate>
             <div class="form-floating mb-3">
-               <input type="text" class="form-control" id="inputNote" required>
-               <label  class="form-label" for="floatingInput">Task</label>
-               <div class="valid-feedback">
-                  Looks good!
-                </div>
+              <input type="text" class="form-control" id="inputNote" required />
+              <label class="form-label" for="floatingInput">Task</label>
+              <div class="valid-feedback">Looks good!</div>
 
-                <div class="invalid-feedback">
-                  Please provide a task title.
-                </div>
-             </div>
-             
-             <div class="form-floating">
-               <textarea class="form-control" placeholder="Leave a comment here" id="inputDesc" style="height: 100px"></textarea>
-               <label for="floatingTextarea2">Description</label>
-             </div>
+              <div class="invalid-feedback">Please provide a task title.</div>
+            </div>
+
+            <div class="form-floating">
+              <textarea
+                class="input-desc form-control"
+                id="inputDesc"
+              ></textarea>
+              <label for="floatingTextarea2">Description</label>
+            </div>
             <button type="submit" class="btn btn-secondary mt-5">Submit</button>
           </form>
         </div>
-        <div class="col">Current List</div>
+        <div class="col-6">
+          <p class="fs-4 fw-bold">Your List</p>
+          <ul class="list-group" id="list">
+            <li class="py-3 list-group-item task-item">
+              <div class="row">
+                <div class="col-1">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+                  />
+                </div>
+                <div class="col-8">
+                  <span class="fs-4"> Go to the bank </span>
+                  <p class="fs-6 fw-light">Description</p>
+
+                  <p class="text-end fst-italic">December 12, 2020.</p>
+                  <span></span>
+                </div>
+                <div class="col-2">
+                  <button class="btn btn-primary btn-sm">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  <button class="btn btn-danger btn-sm">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
-
-
+    </div>
     <script src="js/script.js"></script>
   </body>
 </html>
