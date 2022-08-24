@@ -3,11 +3,16 @@ const inputNote = document.getElementById("inputNote");
 const inputDesc = document.getElementById("inputDesc");
 const todoList = document.getElementById("list");
 const formNote = document.getElementById("formNote");
+const noTaskMessage = document.getElementById("noTaskMessage");
 
 var editableID = 0;
 var isEditing = false;
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+if (tasks.length != 0) {
+  noTaskMessage.classList.add("d-none");
+}
 
 if (localStorage.getItem("tasks")) {
   // sort by date
@@ -120,8 +125,13 @@ todoList.addEventListener("input", (e) => {
 
 // adding of task to DOM
 function createTask(task) {
+  noTaskMessage.classList.add("d-none");
+
   const taskEl = document.createElement("li");
   taskEl.setAttribute("id", task.id);
+  if (task.isCompleted) {
+    taskEl.classList.add("complete");
+  }
   taskEl.classList.add("py-3");
   taskEl.classList.add("mb-3");
   taskEl.classList.add("list-group-item");
@@ -137,8 +147,8 @@ function createTask(task) {
             id="flexCheckDefault"
          />
       </div>
-      <div class="col-7">
-         <p class="fs-4"> ${task.note} </p>
+      <div class="col-8">
+         <p class="fs-5"> ${task.note} </p>
          <p class="fs-6 fw-light text-wrap">${task.description}</p>
 
          <p class="text-end fst-italic text-wrap">${task.dateCreated}</p>
@@ -172,7 +182,8 @@ function updateTaskStatus(taskId, el) {
   }
 
   localStorage.setItem("tasks", JSON.stringify(tasks));
-
+  editableID = task.id;
+  updateTaskDOM(task);
   //   countTasks();
 }
 
@@ -196,6 +207,11 @@ function removeTask(taskId) {
   if (deleteConfirmation == true) {
     localStorage.setItem("tasks", JSON.stringify(tasks));
     document.getElementById(taskId).remove();
+
+    if (tasks.length == 0) {
+      noTaskMessage.classList.remove("d-none");
+    }
+
     //  countTasks();
   }
 
@@ -206,6 +222,11 @@ function removeTask(taskId) {
 }
 
 function updateTaskDOM(task) {
+  if (task.isCompleted) {
+    document.getElementById(editableID).classList.add("complete");
+  } else {
+    document.getElementById(editableID).classList.remove("complete");
+  }
   document.getElementById(editableID).innerHTML = `
    <div class="row">
       <div class="col-1">
@@ -217,8 +238,8 @@ function updateTaskDOM(task) {
             id="flexCheckDefault"
          />
       </div>
-      <div class="col-7">
-         <p class="fs-4"> ${task.note} </p>
+      <div class="col-8">
+         <p class="fs-5"> ${task.note} </p>
          <p class="fs-6 fw-light">${task.description}</p>
 
          <p class="text-end fst-italic">${task.dateCreated}</p>
