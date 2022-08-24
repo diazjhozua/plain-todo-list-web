@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <title>Todo List</title>
+  </head>
+  <body>
+    <div
+      class="container rounded-3 border border-2 border-dark my-5 bg-white"
+      style="height: auto"
+    >
+      <div>
+        <h1 class="h1">To Do List</h1>
+        <div class="row">
+          <div class="col-8">
+            <input
+              class="py-3 form-control shadow"
+              placeholder="input your task"
+              type="text"
+              id="inputText"
+            />
+          </div>
+          <div class="col-2">
+            <!-- <i onclick="addList()" class=" btn btn-dark rounded-pill fas fa-4x fa-plus-circle "></i> -->
+            <button onclick="addList()" class="mt-2 btn btn-dark">Add</button>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="row rounded bg-white">
+        <div class="col-12">
+          <ul class="list-group" id="list"></ul>
+        </div>
+      </div>
+    </div>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <script defer src="js/script.js"></script>
+  </body>
+</html>
