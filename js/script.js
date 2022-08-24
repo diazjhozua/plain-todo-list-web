@@ -49,7 +49,7 @@ formNote.addEventListener("submit", function (e) {
     formNote.classList.add("was-validated");
     inputNote.focus();
   } else {
-    //validation passed
+    // validation passed
     formNote.classList.remove("was-validated");
     if (!isEditing) {
       const task = {
