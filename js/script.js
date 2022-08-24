@@ -25,11 +25,9 @@ if (localStorage.getItem("tasks")) {
   // sort by date
 
   tasks.sort((a, b) => {
-    if (new Date(a.dateCreated).getTime() > new Date(b.dateCreated).getTime()) {
+    if (a.id > new Date(b.id).getTime()) {
       return 1;
-    } else if (
-      new Date(a.dateCreated).getTime() < new Date(b.dateCreated).getTime()
-    ) {
+    } else if (new Date(a.id).getTime() < new Date(b.id).getTime()) {
       return -1;
     } else {
       return 0;
@@ -64,6 +62,13 @@ formNote.addEventListener("submit", function (e) {
         }),
         isCompleted: false,
       };
+
+      // new Date().toLocaleDateString("en-US", {
+      //   month: "long",
+      //   day: "2-digit",
+      //   year: "numeric",
+      //   hour: "2-digit",
+      // }),
 
       tasks.unshift(task);
       createTask(task);
