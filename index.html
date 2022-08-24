@@ -20,6 +20,8 @@
       crossorigin="anonymous"
     ></script>
 
+    <link rel="stylesheet" type="text/css" href="css/toast.css" />
+
     <title>Todo List</title>
   </head>
   <body>
@@ -52,9 +54,9 @@
 
     <div class="container mt-5 pt-5">
       <div class="row gx-5">
-        <div class="col-4">
+        <div class="col-12 col-md-4">
           <div class="border p-5">
-            <p class="fs-4 text">What's on your planned?</p>
+            <p class="fs-4 text">What's on your plan?</p>
 
             <form id="formNote" class="needs-validation" novalidate>
               <div class="form-floating mb-3">
@@ -84,12 +86,14 @@
           </div>
         </div>
 
-        <div class="col-6">
-          <p class="fs-4 fw-bold">Your List</p>
+        <div class="col-12 col-md-8 px-5">
+          <p class="fs-4 fw-bold mt-sm-4">Your List</p>
           <ul class="list-group" id="list"></ul>
         </div>
       </div>
     </div>
+
+    <script src="js/toast.js"></script>
     <script src="js/script.js"></script>
   </body>
 </html>

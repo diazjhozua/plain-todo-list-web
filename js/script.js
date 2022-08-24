@@ -10,6 +10,20 @@ var isEditing = false;
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 if (localStorage.getItem("tasks")) {
+  // sort by date
+
+  tasks.sort((a, b) => {
+    if (new Date(a.dateCreated).getTime() > new Date(b.dateCreated).getTime()) {
+      return 1;
+    } else if (
+      new Date(a.dateCreated).getTime() < new Date(b.dateCreated).getTime()
+    ) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
+
   tasks.map((task) => {
     createTask(task);
   });
@@ -33,12 +47,20 @@ formNote.addEventListener("submit", function (e) {
           month: "long",
           day: "2-digit",
           year: "numeric",
+          hour: "2-digit",
         }),
         isCompleted: false,
       };
 
       tasks.unshift(task);
       createTask(task);
+      vanillaToast.success(
+        "The task has been created successfully! I hope you finished this soon",
+        {
+          duration: 2000,
+          fadeDuration: 180,
+        }
+      );
     } else {
       // if editing
       const task = tasks.find((task) => task.id == editableID);
@@ -46,6 +68,14 @@ formNote.addEventListener("submit", function (e) {
         task.note = inputNote.value;
         task.description = inputDesc.value;
       }
+
+      vanillaToast.success(
+        "The task has been updated successfully! I hope you finished this soon",
+        {
+          duration: 2000,
+          fadeDuration: 180,
+        }
+      );
 
       updateTaskDOM(task);
     }
@@ -109,9 +139,9 @@ function createTask(task) {
       </div>
       <div class="col-7">
          <p class="fs-4"> ${task.note} </p>
-         <p class="fs-6 fw-light">${task.description}</p>
+         <p class="fs-6 fw-light text-wrap">${task.description}</p>
 
-         <p class="text-end fst-italic">${task.dateCreated}</p>
+         <p class="text-end fst-italic text-wrap">${task.dateCreated}</p>
          <span></span>
       </div>
       <div class="col-3">
@@ -134,7 +164,15 @@ function updateTaskStatus(taskId, el) {
   const task = tasks.find((task) => task.id === parseInt(taskId));
   task.isCompleted = !task.isCompleted;
 
+  if (task.isCompleted) {
+    vanillaToast.success("Yehey Congrats Mr. Productive Person :)", {
+      duration: 2000,
+      fadeDuration: 180,
+    });
+  }
+
   localStorage.setItem("tasks", JSON.stringify(tasks));
+
   //   countTasks();
 }
 
@@ -145,6 +183,7 @@ function updateTask(taskId, el) {
   inputDesc.value = task.description;
   editableID = taskId;
   isEditing = true;
+  window.scrollTo(0, 0);
   inputNote.focus();
 }
 
@@ -159,6 +198,11 @@ function removeTask(taskId) {
     document.getElementById(taskId).remove();
     //  countTasks();
   }
+
+  vanillaToast.info("The task has been deleted successfully!", {
+    duration: 2000,
+    fadeDuration: 180,
+  });
 }
 
 function updateTaskDOM(task) {
